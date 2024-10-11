@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -39,8 +40,11 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = moveDirection * moveSpeed;
 
+        
         //transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(0, 0, moveDirection.x * rotationMultiplier, 0), rotationSpeed);
-        //transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, new Vector3(0,0,moveDirection.x * rotationMultiplier), rotationSpeed);
+        transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, moveDirection.x * -rotationMultiplier), rotationSpeed);
+        Debug.Log(Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, moveDirection.x * -rotationMultiplier), rotationSpeed));
+        //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.Clamp(transform.eulerAngles.z, -15, 15));
     }
 
     private void Movement(Vector2 _direction)

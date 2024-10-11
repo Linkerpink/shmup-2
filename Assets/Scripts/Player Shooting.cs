@@ -10,12 +10,15 @@ public class PlayerShooting : MonoBehaviour
 
     private Controls controls;
 
+    private IEnumerator _Shooting;
+
     private void Awake()
     {
         controls = new Controls();
 
         controls.Player.Shoot.performed += context => Shoot();
         controls.Player.Shoot.canceled += context => StopShoot();
+        _Shooting = Shooting();
     }
 
     private void OnEnable()
@@ -30,18 +33,21 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        StartCoroutine(Shooting());
+        StartCoroutine(_Shooting);
     }
 
     private void StopShoot()
     {
-        StopCoroutine(Shooting());
+        StopCoroutine(_Shooting);
     }
 
     private IEnumerator Shooting()
     {
-        GameObject _bullet = Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.identity);
-        Destroy(_bullet, bulletDestroyTime);
-        yield return new WaitForSeconds(bulletDelay);
+        while (true)
+        {
+            GameObject _bullet = Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.identity);
+            Destroy(_bullet, bulletDestroyTime);
+            yield return new WaitForSeconds(bulletDelay);
+        }
     }
 }
