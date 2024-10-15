@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private CameraManager cameraManager;
+
     private Rigidbody2D rb;
     private Vector3 randomPosition = Vector3.zero;
     [SerializeField] private float lerpSpeed = 0.025f;
@@ -12,6 +14,8 @@ public class Enemy : MonoBehaviour
     private bool initiated = false;
 
     private float hp = 5;
+
+    [SerializeField] private GameObject explotion;
 
     private enum EnemyTypes
     {
@@ -24,6 +28,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        cameraManager = GameObject.Find("Camera Manager").GetComponent<CameraManager>();
     }
 
     private void Update()
@@ -52,6 +57,11 @@ public class Enemy : MonoBehaviour
 
         if (hp <= 0)
         {
+            cameraManager.ScreenShake(5f, 7.5f, 0.5f);
+
+            GameObject _explotion = Instantiate(explotion, transform.position, Quaternion.identity);
+            Destroy(_explotion, 5f);
+
             Destroy(gameObject);
         }
     }
@@ -82,7 +92,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Debug.Log("Bullet hit");
+            cameraManager.ScreenShake(3f, 7.5f, 0.15f);
             Destroy(collision.gameObject);
             hp -= 1;
         }
