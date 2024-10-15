@@ -40,11 +40,24 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = moveDirection * moveSpeed;
 
-        
-        //transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(0, 0, moveDirection.x * rotationMultiplier, 0), rotationSpeed);
-        transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, moveDirection.x * -rotationMultiplier), rotationSpeed);
-        Debug.Log(Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, moveDirection.x * -rotationMultiplier), rotationSpeed));
-        //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.Clamp(transform.eulerAngles.z, -15, 15));
+        //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, moveDirection.x * -rotationMultiplier), rotationSpeed);
+
+        /*
+        switch (moveDirection.x)
+        {
+            case -1:
+                transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, rotationMultiplier), rotationSpeed);
+                break;
+            case 0:
+                transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, 0), rotationSpeed);
+                break;
+            case 1:
+                transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, -rotationMultiplier), rotationSpeed);
+                break;
+        }
+        */
+
+        //Debug.Log(Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, moveDirection.x * -rotationMultiplier), rotationSpeed));
     }
 
     private void Movement(Vector2 _direction)
