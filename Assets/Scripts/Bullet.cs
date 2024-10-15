@@ -17,12 +17,4 @@ public class Bullet : MonoBehaviour
     {
         rb.velocity = new Vector2(0, bulletSpeed);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Shootable"))
-        {
-            Destroy(gameObject);
-        }
-    }
 }
