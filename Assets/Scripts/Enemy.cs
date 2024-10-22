@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
 
         if (hp <= 0)
         {
-            cameraManager.ScreenShake(5f, 7.5f, 0.5f);
+            cameraManager.ScreenShake(7.5f, 7.5f, 0.5f);
 
             GameObject _explotion = Instantiate(explotion, transform.position, Quaternion.identity);
             Destroy(_explotion, 5f);
@@ -92,7 +92,11 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            cameraManager.ScreenShake(3f, 7.5f, 0.15f);
+            if (hp > 1)
+            {
+                cameraManager.ScreenShake(3f, 7.5f, 0.15f);
+            }
+            
             Destroy(collision.gameObject);
             hp -= 1;
         }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
+    private GameManager gameManager;
+
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletDelay = 0.1f;
     [SerializeField] private float bulletDestroyTime = 2.5f;
@@ -14,6 +16,8 @@ public class PlayerShooting : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
         controls = new Controls();
 
         controls.Player.Shoot.performed += context => Shoot();
@@ -29,6 +33,14 @@ public class PlayerShooting : MonoBehaviour
     private void OnDisable()
     {
         controls.Disable();
+    }
+
+    private void Update()
+    {
+        if (gameManager.paused)
+        {
+            StopShoot();
+        }
     }
 
     private void Shoot()

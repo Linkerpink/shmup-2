@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private GameManager gameManager;
+
     [SerializeField] private float moveSpeed = 1f;
     
     private Rigidbody2D rb;
@@ -18,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
         controls = new Controls();
 
         controls.Player.Movement.performed += context => Movement(context.ReadValue<Vector2>());
