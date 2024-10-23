@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
@@ -45,7 +46,10 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        StartCoroutine(_Shooting);
+        if (!gameManager.paused)
+        {
+            StartCoroutine(_Shooting);
+        }
     }
 
     private void StopShoot()

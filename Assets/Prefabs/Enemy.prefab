@@ -131,9 +131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a6d5379332009408eb225e22c6428b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpSpeed: 0.025
+  lerpSpeed: 0.25
+  moveSpeed: 2500
+  movingRight: 0
+  hp: 2
   explotion: {fileID: 8753719770397046812, guid: 5405dbe2e90845847b18169cca659150, type: 3}
-  enemyType: 0
 --- !u!61 &1417619119549327529
 BoxCollider2D:
   m_ObjectHideFlags: 0

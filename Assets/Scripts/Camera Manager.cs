@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.SceneManagement;
+using TreeEditor;
 
 public class CameraManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class CameraManager : MonoBehaviour
 
         perlin.m_AmplitudeGain = amplitude;
         perlin.m_FrequencyGain = frequency;
+
         StartCoroutine(ShakeTimer(length));
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     private GameObject pauseUI;
 
     public bool paused = false;
+
+    private PlayerMovement player;
     
     private void Awake()
     {
@@ -17,6 +20,8 @@ public class GameManager : MonoBehaviour
         controls.Game.Pause.performed += context => Pause();
 
         pauseUI = GameObject.Find("Pause UI");
+
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     private void OnEnable()
@@ -48,5 +53,23 @@ public class GameManager : MonoBehaviour
 
             Time.timeScale = 1;
         }
+    }
+
+    public void ControllerRumble(float leftMotorIntensity, float rightMotorIntensity, float time)
+    {
+        if (player != null)
+        {
+            if (player.isGamepad)
+            {
+                Gamepad.current.SetMotorSpeeds(0.50f, 0.50f);
+                StartCoroutine(StopControllerRumble(time));
+            }
+        }
+    }
+
+    private IEnumerator StopControllerRumble(float time)
+    {
+        yield return new WaitForSeconds(time);
+        InputSystem.ResetHaptics();
     }
 }

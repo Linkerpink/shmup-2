@@ -20,11 +20,11 @@ public class ScreenWrap : MonoBehaviour
 
         if (screenPos.x > Screen.width + margin)
         {
-            transform.position = mainCamera.ScreenToWorldPoint(new Vector3(0 - margin, screenPos.y, 10 /*10 = the position of the camera's z axis*/));
+            transform.position = mainCamera.ScreenToWorldPoint(new Vector3(0 - margin, screenPos.y, 10));
         }
         else if (screenPos.x < margin)
         {
-            transform.position = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width + margin, screenPos.y, 10 /*10 = the position of the camera's z axis*/));
+            transform.position = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width + margin, screenPos.y, 10));
         }
     }
 }

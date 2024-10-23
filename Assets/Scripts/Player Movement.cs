@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationMultiplier = 10;
 
     private Controls controls;
+
+    public bool isGamepad;
 
     private void Awake()
     {
@@ -67,5 +70,11 @@ public class PlayerMovement : MonoBehaviour
     private void Movement(Vector2 _direction)
     {
         moveDirection = new Vector2(_direction.x, 0f);
+    }
+
+    //Input
+    public void OnDeviceChange(PlayerInput _input)
+    {
+        isGamepad = _input.currentControlScheme.Equals("Gamepad") ? true : false;
     }
 }

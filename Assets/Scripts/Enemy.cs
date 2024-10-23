@@ -5,50 +5,33 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private CameraManager cameraManager;
+    private GameManager gameManager;
 
     private Rigidbody2D rb;
     private Vector3 randomPosition = Vector3.zero;
     [SerializeField] private float lerpSpeed = 0.025f;
-    private float moveSpeed = 1.0f;
+    [SerializeField] private float moveSpeed = 1.0f;
 
     private bool initiated = false;
 
-    private float hp = 5;
+    [SerializeField] private bool movingRight = true;
+
+    [SerializeField] private float hp = 2;
 
     [SerializeField] private GameObject explotion;
-
-    private enum EnemyTypes
-    {
-        Moving,
-        Shooting,
-    }
-
-    [SerializeField] private EnemyTypes enemyType;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         cameraManager = GameObject.Find("Camera Manager").GetComponent<CameraManager>();
+        gameManager = GameObject.Find("Game Manager").GetComponent <GameManager>();
     }
 
     private void Update()
     {
         if (initiated)
         {
-            switch (enemyType)
-            {
-                case EnemyTypes.Moving:
-
-                    break;
-
-                case EnemyTypes.Shooting:
-
-                    break;
-
-                default:
-
-                    break;
-            }
+            MoveToScreenEdges();
         }
         else
         {
@@ -57,7 +40,8 @@ public class Enemy : MonoBehaviour
 
         if (hp <= 0)
         {
-            cameraManager.ScreenShake(7.5f, 7.5f, 0.5f);
+            cameraManager.ScreenShake(7.5f, 7.5f, 0.25f);
+            gameManager.ControllerRumble(0.5f, 0.5f, 0.5f);
 
             GameObject _explotion = Instantiate(explotion, transform.position, Quaternion.identity);
             Destroy(_explotion, 5f);
@@ -82,6 +66,29 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void MoveToScreenEdges()
+    {
+        Vector2 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+
+        if (movingRight) 
+        {
+            rb.velocity = new Vector2(moveSpeed * Time.deltaTime, 0f);
+        }else if (!movingRight)
+        {
+            rb.velocity = new Vector2(-moveSpeed * Time.deltaTime, 0f);
+        }
+
+        if (screenPos.x >= Screen.width)
+        {
+            movingRight = false;
+        }
+
+        if (screenPos.x <= 0)
+        {
+            movingRight = true;
+        }
+    }
+
     private IEnumerator Move()
     {
 
@@ -91,12 +98,7 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
-        {
-            if (hp > 1)
-            {
-                cameraManager.ScreenShake(3f, 7.5f, 0.15f);
-            }
-            
+        {   
             Destroy(collision.gameObject);
             hp -= 1;
         }
