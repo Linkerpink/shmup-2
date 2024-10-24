@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7460767308478754817}
   - component: {fileID: 5192023232847963558}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1744068770906421350}
   - component: {fileID: 1417619119549327529}
   - component: {fileID: 3921837355916381544}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpSpeed: 0.25
-  moveSpeed: 2500
+  moveSpeed: 7.5
   movingRight: 0
   hp: 2
   explotion: {fileID: 8753719770397046812, guid: 5405dbe2e90845847b18169cca659150, type: 3}
@@ -151,7 +151,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -203,7 +203,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
