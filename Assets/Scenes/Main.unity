@@ -10824,6 +10824,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7636145931877243393, guid: 64f6db2ee27c1b04b832ebcdb7f5e470, type: 3}
+      propertyPath: wave
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7636145931877243393, guid: 64f6db2ee27c1b04b832ebcdb7f5e470, type: 3}
+      propertyPath: spawnDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7943072441647221227, guid: 64f6db2ee27c1b04b832ebcdb7f5e470, type: 3}
       propertyPath: m_Name
       value: Wave Manager

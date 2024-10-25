@@ -22,6 +22,10 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private GameObject explotion;
 
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private float shootDelay = 1f;
+    private float initialShootDelay;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,11 +34,19 @@ public class Enemy : MonoBehaviour
         cameraManager = GameObject.Find("Camera Manager").GetComponent<CameraManager>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         waveManager = GameObject.Find("Wave Manager").GetComponent<WaveManager>();
+
+        initialShootDelay = shootDelay;
+    }
+
+    private void Start()
+    {
+        StartCoroutine(Shoot(shootDelay));
     }
 
     private void Update()
     {
         moveSpeed = initialMoveSpeed + (waveManager.wave / 5);
+        shootDelay = initialShootDelay - (waveManager.wave / 250);
 
         if (hp <= 0)
         {
@@ -103,6 +115,15 @@ public class Enemy : MonoBehaviour
     {
 
         yield return new WaitForSeconds(moveSpeed);
+    }
+
+    private IEnumerator Shoot(float _shootDelay)
+    {
+        while (true) 
+        {
+            yield return new WaitForSeconds(Random.Range(_shootDelay - 0.05f, _shootDelay + 0.05f));
+            Instantiate(bullet, transform.position, bullet.transform.rotation);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
