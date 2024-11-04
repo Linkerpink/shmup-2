@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Enemy Bullet
+  - Freeze Bullet
   layers:
   - Default
   - TransparentFX

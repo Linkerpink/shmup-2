@@ -47,4 +47,6 @@ MonoBehaviour:
   wave: 1
   enemyTypes:
   - {fileID: 3717906939351723878, guid: df052b770698ee14dbbb8ecd72f45955, type: 3}
+  - {fileID: 3717906939351723878, guid: 261c87fabe8ad864ca6999b5900949a6, type: 3}
   enemies: []
+  spawnDelay: 0.5

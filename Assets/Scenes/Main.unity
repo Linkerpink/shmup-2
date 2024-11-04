@@ -11146,13 +11146,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7636145931877243393, guid: 64f6db2ee27c1b04b832ebcdb7f5e470, type: 3}
-      propertyPath: wave
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7636145931877243393, guid: 64f6db2ee27c1b04b832ebcdb7f5e470, type: 3}
       propertyPath: spawnDelay
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7636145931877243393, guid: 64f6db2ee27c1b04b832ebcdb7f5e470, type: 3}
+      propertyPath: enemyTypes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7636145931877243393, guid: 64f6db2ee27c1b04b832ebcdb7f5e470, type: 3}
+      propertyPath: enemyTypes.Array.data[1]
+      value: 
+      objectReference: {fileID: 3717906939351723878, guid: 261c87fabe8ad864ca6999b5900949a6, type: 3}
     - target: {fileID: 7943072441647221227, guid: 64f6db2ee27c1b04b832ebcdb7f5e470, type: 3}
       propertyPath: m_Name
       value: Wave Manager

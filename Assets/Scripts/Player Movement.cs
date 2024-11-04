@@ -21,6 +21,10 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGamepad;
 
+    private bool canMove = true;
+
+    private SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -31,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Movement.canceled += context => Movement(context.ReadValue<Vector2>());
 
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -45,7 +50,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = moveDirection * moveSpeed;
+        if (canMove) 
+        {
+            rb.velocity = moveDirection * moveSpeed;
+        }else
+        {
+            rb.velocity = Vector2.zero;
+        }
 
         //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, moveDirection.x * -rotationMultiplier), rotationSpeed);
 
@@ -70,6 +81,15 @@ public class PlayerMovement : MonoBehaviour
     private void Movement(Vector2 _direction)
     {
         moveDirection = new Vector2(_direction.x, 0f);
+    }
+
+    public IEnumerator Freeze(float _freezeTime)
+    { 
+        canMove = false;
+        spriteRenderer.color = Color.blue;
+        yield return new WaitForSeconds(_freezeTime);
+        spriteRenderer.color = Color.white;
+        canMove = true;
     }
 
     //Input
