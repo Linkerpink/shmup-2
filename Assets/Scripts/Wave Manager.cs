@@ -30,7 +30,7 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
-        waveText.SetText("Wave: " + wave);
+        waveText.SetText("WAVE: " + wave);
         spawnDelay = initialSpawnDelay - (wave / 25);
 
         if (enemies.Count <= 0)

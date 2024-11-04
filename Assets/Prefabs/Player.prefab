@@ -169,6 +169,7 @@ MonoBehaviour:
   moveSpeed: 10
   rotationSpeed: 0.5
   rotationMultiplier: 15
+  isGamepad: 0
 --- !u!114 &7205027596461478119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,8 +230,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.012497485}
-  m_Size: {x: 0.5, y: 0.54794157}
+  m_Offset: {x: 0, y: -0.03650345}
+  m_Size: {x: 1.0591354, y: 1.0699384}
   m_Direction: 0
 --- !u!50 &960001966209558419
 Rigidbody2D:
