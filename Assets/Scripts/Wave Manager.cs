@@ -16,11 +16,18 @@ public class WaveManager : MonoBehaviour
 
     private TextMeshProUGUI waveText;
 
+    private GameObject player;
+
+    [SerializeField] private GameObject healthPickup;
+    private Vector2 healthPickupPos;
+
     private void Awake()
     {
         enemySpawn = GameObject.Find("Enemy Spawn").transform;
         waveText = GameObject.Find("Wave Text").GetComponent<TextMeshProUGUI>();
         initialSpawnDelay = spawnDelay;
+
+        player = GameObject.Find("Player");
     }
 
     private void Start()
@@ -42,6 +49,10 @@ public class WaveManager : MonoBehaviour
     private void NewWave()
     {
         wave += 1;
+
+        healthPickupPos = new Vector2(Random.Range(0f, 8.8f), player.transform.position.y);
+
+        Instantiate(healthPickup, healthPickupPos, Quaternion.identity);
 
         StartCoroutine(SpawnEnemies());
     }

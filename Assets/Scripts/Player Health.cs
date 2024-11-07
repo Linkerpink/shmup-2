@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -81,6 +82,16 @@ public class PlayerHealth : MonoBehaviour
                 StartCoroutine(movement.Freeze(1));
                 StartCoroutine(Invincible(1f));
             }
+
+            if (collision.gameObject.tag == "Health Pickup")
+            {
+                if (hp < 3)
+                {
+                    hp++;
+                }
+
+                Destroy(collision.gameObject);
+            }
         }
     }
 
@@ -93,6 +104,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("you died!");
+        SceneManager.LoadScene("Death Screen");
     }
 }
